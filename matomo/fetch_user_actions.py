@@ -43,7 +43,7 @@ for site_id, site_name in sites:
                     time_diff = 0
 
                 if 'arriveBy' in query and len(query['arriveBy']) > 0:
-                    is_arriveBy = query['arriveBy'] == 'true'
+                    is_arriveBy = 'true' in query['arriveBy']
                 else:
                     is_arriveBy = False
 
