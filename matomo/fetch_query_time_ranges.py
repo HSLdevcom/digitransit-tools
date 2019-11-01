@@ -44,8 +44,14 @@ for site_id, site_name in sites:
             'token_auth': token}
         r = requests.get('https://digiaiiris.com/web-analytics/', params=params, cert=cert)
 
-        print('Found %d entries for %s' % (len(r.json()), day))
-        for entry in r.json():
+        if r.status_code != 200:
+            print('Failed to load data for %s %s' % (site_name, day))
+            continue
+
+        data = r.json()
+
+        print('Found %d entries for %s' % (len(data), day))
+        for entry in data:
             is_arriveBy = False
             time_diff = None
             for action in entry['actionDetails']:
