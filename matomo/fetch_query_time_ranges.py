@@ -19,6 +19,7 @@ site_collections = os.environ.get('SITE_COLLECTIONS', 'all')
 fetch_days = int(os.environ.get('DAYS', '1'))
 fetch_visitors_per_site = os.environ.get('VISITOR_COUNT', '10')
 time_range_length = int(os.environ.get('TIME_RANGE', '15'))
+filter_percentiles = int(os.environ.get('FILTER_TOP_BOTTOM_PERCENTILE'))
 
 if site_collections == 'all':
     sites = matomo_sites.get_matomo_sites(token)
@@ -103,6 +104,13 @@ for search_type, lower_bounds in time_range_hits.items():
     total_hits = lower_bounds['n']
     del lower_bounds['n']
     sorted_lower_bounds_list = sorted(lower_bounds.items(), key=lambda kv: int(kv[0].split(' ')[0]))
+    percentile = 0
+    top_percentile_limit = 100 - filter_percentiles
     for lower_bound_hit_tuple in sorted_lower_bounds_list:
-        w.writerow((lower_bound_hit_tuple[0], lower_bound_hit_tuple[1], (lower_bound_hit_tuple[1] / total_hits) * 100))
+        percentage = (lower_bound_hit_tuple[1] / total_hits) * 100
+        percentile += percentage
+        if filter_percentiles is None or (filter_percentiles <= percentile and top_percentile_limit >= percentile):
+            w.writerow((lower_bound_hit_tuple[0], lower_bound_hit_tuple[1], percentage))
+        elif top_percentile_limit < percentile:
+            break
     f.close()

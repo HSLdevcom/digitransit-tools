@@ -25,6 +25,7 @@ The behaviour of the script can be configured with the following env variables:
 * (Optional, default 1) "DAYS" defines from how many days the data is fetched from, starting from today.
 * (Optional, default 10) "VISITOR_COUNT" defines from many visitor sessions are fetched from per each day per each site
 * (Optional, default 15) "TIME_RANGE" defines the time intervals in minutes for grouping time differences
+* (Optional) "FILTER_TOP_BOTTOM_PERCENTILE" filters out given percentile from bottom and top. In other words, outputs only timeranges that are later than first n% of search time differences but before last n% of time differences
 
 example usage (depending on environment you might have to replace python3 with python)
 `TOKEN=<your token> VISITOR_COUNT=20 DAYS=5 python3 fetch_user_actions.py`
