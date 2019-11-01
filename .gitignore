@@ -20,5 +20,8 @@ py3env
 # Installer logs
 pip-log.txt
 
-# Cert
+# Matomo cert
 client.pem
+
+# Generated matomo data
+/matomo/results
