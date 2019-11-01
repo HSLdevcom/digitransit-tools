@@ -8,6 +8,8 @@ If API is behind shibboleth authentication, you need a client certificate and co
 
 You also need a API token which can be fetched from https://digiaiiris.com/web-analytics/index.php?module=UsersManager&action=userSettings or similar path depending on Matomo deployment.
 
+You need python 3 and pip, the required packages can be installed with `pip3 install --user --requirement requirements.txt` or replace pip3 with pip if default pip is for python 3
+
 ### Available sites
 
 In Matomo, access rights to data from different sites can be limited. matomo_sites.py has a hardcoded list of sites and their siteids. It also checks if you have access to these sites and returns a list of siteids and names.
