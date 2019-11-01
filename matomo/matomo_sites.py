@@ -17,7 +17,7 @@ SITES = {
         '18': 'Digitransit Lappeenranta',
         '21': 'Digitransit Oulu',
         '29': 'Digitransit Kotka',
-        '31': 'Digitransit Mikkeli',
+        # '31': 'Digitransit Mikkeli', Not enough users to fetch meaningful data
         '35': 'Digitransit Tampere',
         '43': 'Digitransit Kouvola',
         '49': 'Digitransit Rovaniemi',
