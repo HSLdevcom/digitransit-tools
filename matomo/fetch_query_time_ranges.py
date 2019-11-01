@@ -8,10 +8,10 @@ import unicodecsv
 
 import matomo_sites
 
-def get_time_in_n_min_range(time_diff, n):
+def get_lower_bound_in_n_min_range(time_diff, n):
     time_diff_as_fifteen_mins = time_diff / 60 / n
     lower_bound = math.floor(time_diff_as_fifteen_mins) * n
-    return str(lower_bound) + ' - ' + str(lower_bound + n)
+    return str(lower_bound)
 
 cert = 'client.pem'
 token = os.environ.get('TOKEN')
@@ -65,24 +65,24 @@ for day in days:
                         is_arriveBy = False
 
             if time_diff:
-                time_range = get_time_in_n_min_range(time_diff, time_range_length)
+                lower_bound = get_lower_bound_in_n_min_range(time_diff, time_range_length)
                 if is_arriveBy:
                     time_range_hits['arriveBy']['n'] += 1
-                    if time_range in time_range_hits['arriveBy']:
-                        time_range_hits['arriveBy'][time_range] += 1
+                    if lower_bound in time_range_hits['arriveBy']:
+                        time_range_hits['arriveBy'][lower_bound] += 1
                     else:
-                        time_range_hits['arriveBy'][time_range] = 1
+                        time_range_hits['arriveBy'][lower_bound] = 1
                 else:
                     time_range_hits['departAt']['n'] += 1
-                    if time_range in time_range_hits['departAt']:
-                        time_range_hits['departAt'][time_range] += 1
+                    if lower_bound in time_range_hits['departAt']:
+                        time_range_hits['departAt'][lower_bound] += 1
                     else:
-                        time_range_hits['departAt'][time_range] = 1
+                        time_range_hits['departAt'][lower_bound] = 1
 
         r.close()
 
 overall_timeranges = {}
-for search_type, time_ranges in time_range_hits.items():
+for search_type, lower_bounds in time_range_hits.items():
     file_path = 'results/%s.csv' % (search_type)
     directory = os.path.dirname(file_path)
     try:
@@ -91,10 +91,10 @@ for search_type, time_ranges in time_range_hits.items():
         os.mkdir(directory)
     f = open(file_path, 'wb')
     w = unicodecsv.writer(f, encoding='utf-8')
-    w.writerow(('range', 'hits', 'percentage'))
-    total_hits = time_ranges['n']
-    del time_ranges['n']
-    sorted_timeranges_list = sorted(time_ranges.items(), key=lambda kv: int(kv[0].split(' ')[0]))
-    for time_range_hit_tuple in sorted_timeranges_list:
-        w.writerow((time_range_hit_tuple[0], time_range_hit_tuple[1], (time_range_hit_tuple[1] / total_hits) * 100))
+    w.writerow(('lower_bound', 'hits', 'percentage'))
+    total_hits = lower_bounds['n']
+    del lower_bounds['n']
+    sorted_lower_bounds_list = sorted(lower_bounds.items(), key=lambda kv: int(kv[0].split(' ')[0]))
+    for lower_bound_hit_tuple in sorted_lower_bounds_list:
+        w.writerow((lower_bound_hit_tuple[0], lower_bound_hit_tuple[1], (lower_bound_hit_tuple[1] / total_hits) * 100))
     f.close()
