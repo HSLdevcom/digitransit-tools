@@ -35,14 +35,16 @@ for i in range(fetch_days):
     new_day = today - timedelta(days=i)
     days.append(new_day.strftime("%Y-%m-%d"))
 
-for day in days:
-    for site_id, site_name in sites:
+for site_id, site_name in sites:
+    print('Fetching data from %s...' % site_name)
+    for day in days:
         params = {
             'module': 'API', 'method': 'Live.getLastVisitsDetails', 'countVisitorsToFetch': fetch_visitors_per_site,
             'period': 'day', 'date': day, 'idSite': site_id, 'format': 'json',
             'token_auth': token}
         r = requests.get('https://digiaiiris.com/web-analytics/', params=params, cert=cert)
 
+        print('Found %d entries for %s' % (len(r.json()), day))
         for entry in r.json():
             is_arriveBy = False
             time_diff = None
