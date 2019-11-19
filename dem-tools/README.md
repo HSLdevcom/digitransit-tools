@@ -125,13 +125,13 @@ Variable NLS_API_TOKEN is always required. Variable AREA_CODE defines the the ti
 Test script by downloading 4 tiles from the center of Helsinki and clip the with `test-clipper.json`. Files are stored in host machine directory `<current-path>/output`
 
 `
-docker run -v ${pwd}/output:/output -e NLS_API_TOKEN='my-token' -e TEST='true' digitransit-dem-tools
+docker run -v ${pwd}/output:/output -e NLS_API_TOKEN='my-token' -e TEST='true' hsldevcom/digitransit-dem-tools
 `
 
 Download tiles of HSL area and clip the to extent of hsl.geojson:
 
 `
-docker run -v ${pwd}/output:/output -e NLS_API_TOKEN='my-token' -e AREA_CODE=HSL -e CLIPPER='area-extents/hsl.geojson' digitransit-dem-tools
+docker run -v ${pwd}/output:/output -e NLS_API_TOKEN='my-token' -e AREA_CODE=HSL -e CLIPPER='area-extents/hsl.geojson' hsldevcom/digitransit-dem-tools
 `
 
 

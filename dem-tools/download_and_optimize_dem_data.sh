@@ -20,7 +20,7 @@ noclip=false
 if [ "$#" = 0 ]; then
 	echo "Test run activated"
     dataset="TEST"
-	clipper="test-clipper.geojson"
+	clipper="area-extents/test-clipper.geojson"
 elif [ "$#" = 1 ]; then
     dataset=$1
 	noclip=true
