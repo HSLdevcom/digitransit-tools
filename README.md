@@ -11,4 +11,4 @@ Tools for creating an optimized elevation model for OpenTripPlanner. Can be foun
 
 ## gtfsdb2pg
 
-Query GTFS data with SQL. Writes GTFS data to Postgres Docker container. Can be found under [gtfsdb2pg](gtfsdb/) [documentation](gtfs2db/README.md)..
+Query GTFS data with SQL. Writes GTFS data to Postgres Docker container. Can be found under [gtfsdb2pg](gtfsdb2pg/) [documentation](gtfsdb2pg/README.md)..

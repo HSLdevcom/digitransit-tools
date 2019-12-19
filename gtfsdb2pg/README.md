@@ -14,11 +14,11 @@ Build a Docker image after cloning the repo:
 # Run
 Start a container running in localhost:5432. Replace MY-GTFS-ZIP-URL with your GTFS data.
 
-`docker run -it -p 5432:5432 --name gtfsdb2pg -e MY-GTFS-ZIP-URL gtfsdb2pg`
+`docker run -it -p 5432:5432 --name gtfsdb2pg -e GTFS=MY-GTFS-ZIP-URL gtfsdb2pg`
 
 Access the data in localhost:5432 with you're favorite DB tool. Or you can view it with `psql`:
 
-`docker exec -it gtfsdb2pg pqsql postgres postgres`
+`docker exec -it gtfsdb2pg psql postgres postgres`
 
 # Example query
 
