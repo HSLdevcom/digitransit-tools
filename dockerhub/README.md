@@ -1,7 +1,7 @@
 # Scripts for using docker hub API
 
 ## replace_tags.sh
-This script can be used to push dummy minimal image to replace data build images between dates. [Deleting tags is too complicated](https://github.com/docker/distribution/pull/2169).
+This script can be used to push dummy minimal image to replace data build images between dates. [Deleting tags is too complicated](https://github.com/docker/distribution/pull/2169). Currently this script only works for opentripplanner-data-container and hsl-timetable-container images.
 
 #### Configuration
 It is possible to change the behaviour of the data builder by defining environment variables.
