@@ -147,7 +147,7 @@ do
         if [ "$TAG_EPOCH" -lt "$YEAR_AGO" ] && [ "$YEAR_CHANGED" == false ]; then
           echo "        --> More than one year old"
           DELETE=true
-        elif [ "$TAG_EPOCH" -lt "$MONTH_AGO" ] && [ "$MONTH_CHANGED" == false ]; then
+        elif [ "$TAG_EPOCH" -lt "$MONTH_AGO" ] && [ "$YEAR_CHANGED" == false ] && [ "$MONTH_CHANGED" == false ]; then
           echo "        --> More than one month old"
           DELETE=true
         else
