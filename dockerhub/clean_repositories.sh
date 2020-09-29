@@ -7,11 +7,11 @@ REPOSITORIES=("hsldevcom/opentripplanner")
 
 
 
-# These tags or tags starting with these strings will be ignored!
-IGNORED_TAGS_ARR=("latest" "prod")
+# These tags or tags starting with these strings will be skipped!
+SKIP_TAGS=("latest" "prod")
 
 # Deletion rules:
-# 1) Tags in IGNORED_TAGS_ARR are skipped
+# 1) Tags in SKIP_TAGS are skipped
 # 2) More than one year old images will be deleted, unless they are the first tag of that year
 # 3) More than one month old images will be deleted, unless they are the first tag of that month and less than year old
 
@@ -106,7 +106,7 @@ do
       TAG=$(jq -r .name <<< "$result")
       
       # Do not process this TAG if found in the array
-      if [ $(contains "${IGNORED_TAGS_ARR[@]}" "$TAG") == "y" ]; then
+      if [ $(contains "${SKIP_TAGS[@]}" "$TAG") == "y" ]; then
         echo "      Skipping: ${TAG}"
       else
         echo "      Checking: ${TAG}"
