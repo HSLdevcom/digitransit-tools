@@ -57,8 +57,7 @@ function contains() {
 for NAME in "${REPOSITORIES[@]}"
 do
   # (Re-)Login for each repository
-  # TODO: Enable authentication
-  # TOKEN=`curl -s -H "$JSON_HEADER" -X POST -d "$(login_data)" "https://hub.docker.com/v2/users/login/" | jq -r .token`
+  TOKEN=`curl -s -H "$JSON_HEADER" -X POST -d "$(login_data)" "https://hub.docker.com/v2/users/login/" | jq -r .token`
   AUTH_HEADER="Authorization: JWT ${TOKEN}"
   echo "Cleaning repository: ${NAME}"
 
