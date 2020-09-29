@@ -1,7 +1,7 @@
 # Scripts for using docker hub API
 
 ## clean_repositories.sh
-Cleans old tags from Docker Hub.
+Cleans old tags from Docker Hub. Runs for each repository named in REPOSITORIES array. Tags can be ignored (maybe prod, latest, etc..) when added to SKIP_TAGS array. Otherwise tags older than one year will be deleted unless they are the first tag for that year. Tags less than year old but more than one month are deleted if they are not the first for that month.
 
 
 ## replace_tags.sh
