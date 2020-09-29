@@ -1,5 +1,9 @@
 # Scripts for using docker hub API
 
+## clean_repositories.sh
+Cleans old tags from Docker Hub.
+
+
 ## replace_tags.sh
 This script can be used to push dummy minimal image to replace data build images between dates. [Deleting tags is too complicated](https://github.com/docker/distribution/pull/2169). Currently this script only works for opentripplanner-data-container and hsl-timetable-container images.
 
