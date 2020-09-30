@@ -1,5 +1,9 @@
 # Scripts for using docker hub API
 
+## clean_repositories.sh
+Cleans old tags from Docker Hub. Runs for each repository named in REPOSITORIES array. Tags can be ignored (maybe prod, latest, etc..) when added to SKIP_TAGS array. Otherwise tags older than one year will be deleted unless they are the first tag for that year. Tags less than year old but more than one month are deleted if they are not the first for that month.
+
+
 ## replace_tags.sh
 This script can be used to push dummy minimal image to replace data build images between dates. [Deleting tags is too complicated](https://github.com/docker/distribution/pull/2169). Currently this script only works for opentripplanner-data-container and hsl-timetable-container images.
 
