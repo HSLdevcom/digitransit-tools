@@ -25,3 +25,5 @@ client.pem
 
 # Generated matomo data
 /matomo/results
+
+node_modules/
