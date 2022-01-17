@@ -1,7 +1,9 @@
 #!/bin/bash
 
 #run hsl production dataload immediately like this: ./dl.sh hsl-prod
-SERVICE='otp-data-builder-'$1
+#run pelias production dataload like this: ./dl.sh prod pelias-data-container
+LOADER=${2:-'otp-data'}
+SERVICE=$LOADER-builder-$1
 TARGET='roles/aks-apply/files/dev/'$SERVICE'-dev.yml'
 HOUR=$(date -u +"%H")
 MIN=$(date -u +"%M")
