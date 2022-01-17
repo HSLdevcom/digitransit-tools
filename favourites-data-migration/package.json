@@ -1,0 +1,16 @@
+{
+  "name": "favlines-data-import",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start:csv": "node put-from-csv.js",
+    "start:xml": "node put-from-xml.js"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "csv-parser": "^3.0.0",
+    "moment": "^2.29.0",
+    "xml-stream": "^0.4.5"
+  }
+}
