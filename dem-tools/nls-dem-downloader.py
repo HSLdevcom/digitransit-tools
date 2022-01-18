@@ -40,6 +40,7 @@ import os
 import sys
 import time
 from xml.etree import ElementTree
+import re
 
 import requests
 
@@ -105,8 +106,14 @@ def download_files(found, tiles, output_dir):
             logging.info('Downloading: {key} [{idx}/{total}]: {url}'.format(key=key, idx=idx, total=len(found),
                                                                             url=url))
             response = requests.get(url)
+            # Parse filename from headers. If it fails, name it as tif.
+            try:
+                header_fname = response.headers['Content-Disposition']
+                filename = re.findall('filename="(\S*)"', header_fname)[0]
+            except (KeyError, IndexError):
+                filename = key + '.tif'
             if response.status_code == 200:
-                filepath = os.path.join(output_dir, key + '.tif')
+                filepath = os.path.join(output_dir, filename)
                 with open(filepath, 'wb') as f:
                     f.write(response.content)
             else:
@@ -123,16 +130,19 @@ def load_conf(args):
 
     if args.km10:
         dataset = 'korkeusmalli/hila_10m'
+        data_format = 'image/tiff'
         search_keys = config['KM10'][args.area_key]
     elif args.orto:
         dataset = 'orto/ortokuva'
+        data_format = 'image/jp2'
         search_keys = config['KM2'][args.area_key]
     else:
         dataset = 'korkeusmalli/hila_2m'
+        data_format = 'image/tiff'
         search_keys = config['KM2'][args.area_key]
 
-    product_url = 'https://tiedostopalvelu.maanmittauslaitos.fi/tp/feed/mtp/{0}?format=image/tiff&api_key={1}'.format(
-        dataset, api_token)
+    product_url = 'https://tiedostopalvelu.maanmittauslaitos.fi/tp/feed/mtp/{0}?format={1}&api_key={2}'.format(
+        dataset, data_format, api_token)
 
     return search_keys, product_url, args.output_dir
 
