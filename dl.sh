@@ -7,7 +7,17 @@ SERVICE=$LOADER-builder-$1
 TARGET='roles/aks-apply/files/dev/'$SERVICE'-dev.yml'
 HOUR=$(date -u +"%H")
 MIN=$(date -u +"%M")
-MIN=$((MIN + 5))
+MIN=$((MIN + 2))
+if [$MIN -gt 59]
+then
+    MIN=1
+    HOUR=$((HOUR + 1))
+fi
+if [$HOUR -gt 23]
+then
+    HOUR=0
+fi
+
 echo launching dataload at "$HOUR:$MIN"
 GO='schedule: "'"$MIN $HOUR * * *"'"'
 sed -i -e "s/schedule.*/$GO/" $TARGET
