@@ -27,3 +27,6 @@ client.pem
 /matomo/results
 
 node_modules/
+
+# Data files
+/otp/gtfs
