@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "csv-parser": "^3.0.0",
-    "moment": "^2.29.0",
+    "moment": "^2.29.4",
     "xml-stream": "^0.4.5"
   }
 }
