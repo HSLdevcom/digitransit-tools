@@ -40,6 +40,4 @@ Build feed scoped JSON array:
 ./match-routes.sh GTFS_FILE | ./build-feed HSL
 ```
 
-Default value for `REGEXP` is `^(21(4[3-9]|5[0-9]|6[0-5])(A|[B-Z]A).*|2321)$`.
-This expression matches to Espoo bus lines which should be avoided if reasonable
-alternate itinerary with subway exists.
+Default value for `REGEXP` is `^(7.*)$`. This expression matches HSL to U-lines.
