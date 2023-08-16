@@ -5,8 +5,8 @@
 LOADER=${2:-'otp-data'}
 SERVICE=$LOADER-builder-$1
 TARGET='roles/aks-apply/files/dev/'$SERVICE'-dev.yml'
-HOUR=$(date -u +"%H")
-MIN=$(date -u +"%M")
+HOUR=$(date +"%H")
+MIN=$(date +"%M")
 MIN=$((MIN + 2))
 if [$MIN -gt 59]
 then
